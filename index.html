@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarot de Luna</title>
+<style>
+body { background: #1a1030; color: white; font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+h1 { color: #e6c8ff; }
+button { background: #a06ee1; color: white; border: none; padding: 15px 25px; font-size: 18px; border-radius: 20px; cursor: pointer; }
+.cartas { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+.carta { background: white; color: #1a1030; width: 160px; padding: 15px; border-radius: 15px; }
+.carta h2 { font-size: 18px; }
+</style>
+</head>
+<body>
+<h1>🌙 Tarot de Luna 🌙</h1>
+<p>Piensa tu pregunta, Ana, y tira 3 cartas.</p>
+<button onclick="tirar()">Tirar 3 cartas</button>
+<div class="cartas" id="cartas"></div>
+<script>
+const mazo = [
+["La Luna","Confía en tu intuición."],
+["El Sol","Viene algo bonito."],
+["La Estrella","Esperanza y calma."],
+["La Fuerza","Tú puedes con esto."],
+["El Mundo","Se cierra un ciclo bonito."],
+["La Emperatriz","Cuídate y quiérete."],
+["El Mago","Tienes todo para empezar."],
+["La Justicia","Todo se pone en su sitio."]
+];
+function tirar(){
+let copiado = [...mazo].sort(()=>Math.random()-0.5).slice(0,3);
+let titulos = ["Pasado","Presente","Futuro"];
+let html = "";
+copiado.forEach((c,i)=>{
+html += `<div class="carta"><p>${titulos[i]}</p><h2>${c[0]}</h2><p>${c[1]}</p></div>`;
+});
+document.getElementById("cartas").innerHTML = html;
+}
+</script>
+</body>
+</html>
