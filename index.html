@@ -3,49 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌙 Tarot de Luna 🌙</title>
+<title>✨ Tarot Nazaret ✨</title>
 <style>
 body{margin:0;background:#0f0a24;color:white;font-family:Arial,sans-serif;text-align:center;padding:20px;background-image:radial-gradient(white 1px, transparent 1px);background-size:30px 30px}
-h1{color:#f5d76e;font-size:32px;text-shadow:0 0 15px #a06ee1}
-p{font-size:17px}
-button{background:linear-gradient(#e6c8ff,#a06ee1);color:#1a1030;border:none;padding:16px 28px;font-size:19px;border-radius:30px;cursor:pointer;font-weight:bold;box-shadow:0 0 20px #a06ee1}
-button:active{transform:scale(0.95)}
+.logo{font-size:50px;margin:0}
+h1{color:#f5d76e;font-size:36px;margin:5px 0;text-shadow:0 0 20px #e6007e}
+.sub{color:#e6c8ff;font-size:17px;margin-bottom:15px}
+button{border:none;padding:16px 28px;font-size:19px;border-radius:30px;cursor:pointer;font-weight:bold}
+.btn-tirar{background:linear-gradient(#f5d76e,#e6007e);color:white;box-shadow:0 0 25px #e6007e}
+.btn-tirar:active{transform:scale(0.95)}
 .cartas{display:flex;justify-content:center;gap:16px;margin-top:25px;flex-wrap:wrap}
-.carta{width:175px;height:280px;perspective:800px;cursor:pointer}
+.carta{width:175px;height:285px;perspective:800px;cursor:pointer}
 .interior{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform 0.8s}
 .carta.girada .interior{transform:rotateY(180deg)}
-.cara{position:absolute;width:100%;height:100%;border-radius:18px;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px;box-sizing:border-box}
-.detras{background:linear-gradient(135deg,#a06ee1,#3b1d6e);border:3px solid #f5d76e;font-size:60px}
+.cara{position:absolute;width:100%;height:100%;border-radius:20px;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px;box-sizing:border-box}
+.detras{background:linear-gradient(135deg,#e6007e,#3b1d6e,#a06ee1);border:3px solid #f5d76e;font-size:55px}
 .delante{background:#fff7e6;color:#1a1030;transform:rotateY(180deg);border:3px solid #f5d76e}
-.delante img{width:100px;height:100px;object-fit:cover;border-radius:50%;border:3px solid #a06ee1}
-.delante h2{font-size:19px;margin:8px 0 4px}
+.delante img{width:105px;height:105px;object-fit:cover;border-radius:50%;border:3px solid #e6007e}
+.delante h2{font-size:18px;margin:8px 0 4px}
 .delante p{font-size:14px;margin:0}
-.etiqueta{margin-top:8px;background:#f5d76e;color:#1a1030;padding:4px 12px;border-radius:20px;font-weight:bold;font-size:13px}
+.etiqueta{margin-top:8px;background:#f5d76e;color:#1a1030;padding:5px 14px;border-radius:20px;font-weight:bold;font-size:13px}
 #mensaje{margin-top:20px;font-size:19px;color:#f5d76e;min-height:30px}
+.tiktok{margin-top:25px;display:inline-block;background:black;color:white;text-decoration:none;padding:14px 22px;border-radius:30px;font-weight:bold;font-size:17px;border:2px solid #e6007e}
 </style>
 </head>
 <body>
-<h1>🌙 Tarot de Luna 🌙</h1>
-<p>Piensa tu pregunta, respira, y tira tus 3 cartas.</p>
-<button onclick="tirar()">✨ Tirar 3 cartas ✨</button>
+<p class="logo">🌙✨</p>
+<h1>Tarot Nazaret</h1>
+<p class="sub">Tu lectura de hoy, con mucho cariño 💜</p>
+<button class="btn-tirar" onclick="tirar()">✨ Tirar 3 cartas ✨</button>
 <div class="cartas" id="cartas"></div>
 <div id="mensaje"></div>
 <p style="font-size:13px;opacity:0.7">Toca cada carta para girarla 🔊</p>
-
+<a class="tiktok" href="https://www.tiktok.com/@tarotnazaret" target="_blank">🎵 Sígueme en TikTok @tarotnazaret</a>
+<p style="font-size:12px;opacity:0.6;margin-top:15px">Hecho con amor por Tarot Nazaret 🌙</p>
 <script>
 const mazo=[
+["El Loco","Lánzate, algo nuevo empieza.","🤪","https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=300"],
+["El Mago","Tienes todo para empezar.","🎩","https://images.unsplash.com/photo-1507924538820-ede94a04019d?w=300"],
+["La Sacerdotisa","Escucha tu voz interior.","🔮","https://images.unsplash.com/photo-1519681393784-d120267933ba?w=300"],
+["La Emperatriz","Cuídate y quiérete mucho.","👑","https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300"],
+["El Emperador","Orden y estabilidad.","🏰","https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=300"],
+["El Hierofante","Aprende de quien te guía.","🙏","https://images.unsplash.com/photo-1507692049790-de58290a4334?w=300"],
+["Los Enamorados","El corazón manda.","❤️","https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=300"],
+["El Carro","Avanzas, no te pares.","🏎️","https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=300"],
+["La Fuerza","Tú puedes con esto.","🦁","https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=300"],
+["El Ermitaño","Un momento para ti.","🕯️","https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=300"],
+["La Rueda","Viene un cambio bueno.","🎡","https://images.unsplash.com/photo-1504198453319-5ce911bafcde?w=300"],
+["La Justicia","Todo se pone en su sitio.","⚖️","https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=300"],
+["El Colgado","Mira todo de otra forma.","🙃","https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=300"],
+["La Muerte","Se acaba algo y nace algo mejor.","🦋","https://images.unsplash.com/photo-1452570053594-1b985d6ea890?w=300"],
+["La Templanza","Calma, todo llega.","⚖️","https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=300"],
+["El Diablo","Suelta lo que te ata.","😈","https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300"],
+["La Torre","Un cambio brusco para bien.","⚡","https://images.unsplash.com/photo-1428592953211-077101b2021b?w=300"],
+["La Estrella","Esperanza y calma.","⭐","https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=300"],
 ["La Luna","Confía en tu intuición.","🌙","https://images.unsplash.com/photo-1532693322450-2cb5c511b8f3?w=300"],
 ["El Sol","Viene algo muy bonito.","☀️","https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=300"],
-["La Estrella","Esperanza y calma.","⭐","https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=300"],
-["La Fuerza","Tú puedes con esto.","🦁","https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=300"],
-["El Mundo","Se cierra un ciclo bonito.","🌍","https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=300"],
-["La Emperatriz","Cuídate y quiérete mucho.","👑","https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300"],
-["El Mago","Tienes todo para empezar.","🎩","https://images.unsplash.com/photo-1507924538820-ede94a04019d?w=300"],
-["La Justicia","Todo se pone en su sitio.","⚖️","https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=300"],
-["Los Enamorados","El corazón manda.","❤️","https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=300"],
-["La Rueda","Viene un cambio bueno.","🎡","https://images.unsplash.com/photo-1504198453319-5ce911bafcde?w=300"]
+["El Juicio","Es tu momento de renacer.","🎺","https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=300"],
+["El Mundo","Se cierra un ciclo bonito.","🌍","https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=300"]
 ];
-
 function sonido(){
 try{
 let ctx=new (window.AudioContext||window.webkitAudioContext)();
@@ -58,14 +74,13 @@ g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.6);
 o.start(); o.stop(ctx.currentTime+0.6);
 }catch(e){}
 }
-
 function tirar(){
 sonido();
 let copiado=[...mazo].sort(()=>Math.random()-0.5).slice(0,3);
 let titulos=["PASADO","PRESENTE","FUTURO"];
 let html="";
 copiado.forEach((c,i)=>{
-html+=`<div><div class="carta" onclick="this.classList.add('girada');sonido()"><div class="interior"><div class="cara detras">🌙<br><span style="font-size:14px">TAROT<br>DE LUNA</span></div><div class="cara delante"><img src="${c[3]}"><h2>${c[0]}</h2><p>${c[2]}</p><p>${c[1]}</p></div></div></div><div class="etiqueta">${titulos[i]}</div></div>`;
+html+=`<div><div class="carta" onclick="this.classList.add('girada');sonido()"><div class="interior"><div class="cara detras">🌙<br><span style="font-size:14px">TAROT<br>NAZARET</span></div><div class="cara delante"><img src="${c[3]}"><h2>${c[0]}</h2><p>${c[2]}</p><p>${c[1]}</p></div></div></div><div class="etiqueta">${titulos[i]}</div></div>`;
 });
 document.getElementById("cartas").innerHTML=html;
 document.getElementById("mensaje").innerHTML="✨ Toca cada carta para descubrirla ✨";
