@@ -8,20 +8,17 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{width:100%;height:100%;background:#1a0f3d}
 body{display:flex;justify-content:center;align-items:center;background:#1a0f3d;font-family:Arial,sans-serif;color:white;text-align:center}
-.contenedor{width:100%;max-width:430px;height:100%;max-height:760px;display:flex;flex-direction:column;justify-content:space-between;padding:22px 14px;background:#1a0f3d;background-image:radial-gradient(white 1px, transparent 1px);background-size:28px 28px}
+.contenedor{width:100%;max-width:430px;height:100%;max-height:760px;display:flex;flex-direction:column;justify-content:space-between;padding:22px 14px;background:#1a0f3d}
 .logo{font-size:44px}
-h1{color:#f5d76e;font-size:32px;text-shadow:0 0 20px #e6007e}
+h1{color:#f5d76e;font-size:32px}
 .sub{color:#e6c8ff;font-size:15px;margin-top:4px}
 button{border:none;padding:14px 22px;font-size:17px;border-radius:30px;cursor:pointer;font-weight:bold}
-.btn-tirar{background:linear-gradient(#f5d76e,#e6007e);color:white;box-shadow:0 0 25px #e6007e}
+.btn-tirar{background:#e6007e;color:white}
 .cartas{display:flex;justify-content:center;gap:10px;margin:16px 0}
 .col{width:32%}
-.carta{width:100%;aspect-ratio:0.62;perspective:800px;cursor:pointer}
-.interior{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform 0.8s}
-.carta.girada .interior{transform:rotateY(180deg)}
-.cara{position:absolute;width:100%;height:100%;border-radius:16px;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px}
-.detras{background:linear-gradient(135deg,#e6007e,#3b1d6e,#a06ee1);border:3px solid #f5d76e;font-size:36px}
-.delante{background:#fff7e6;color:#1a1030;transform:rotateY(180deg);border:3px solid #f5d76e}
+.carta{width:100%;height:190px;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px}
+.detras{background:#e6007e;border:3px solid #f5d76e;font-size:36px}
+.delante{background:#fff7e6;color:#1a1030;border:3px solid #f5d76e}
 .delante .emoji{font-size:36px}
 .delante h2{font-size:14px;margin:6px 0 4px;line-height:1.1}
 .delante p{font-size:12px;line-height:1.3}
@@ -34,17 +31,26 @@ button{border:none;padding:14px 22px;font-size:17px;border-radius:30px;cursor:po
 <body>
 <div class="contenedor">
 <div><p class="logo">🌙✨</p><h1>Tarot Nazaret</h1><p class="sub">Tu lectura de hoy, con mucho cariño 💜</p></div>
-<div><button class="btn-tirar" onclick="tirar()">✨ Tirar 3 cartas ✨</button><div class="cartas" id="cartas"></div><div id="mensaje">✨ Las cartas se giran solas ✨</div></div>
-<div><p style="font-size:12px;opacity:0.8">Toca para girar 🔊</p><a class="tiktok" href="https://www.tiktok.com/@tarotnazaret" target="_blank">🎵 Sígueme @tarotnazaret</a><p class="pie">Hecho con amor por Tarot Nazaret 🌙</p></div>
+<div><button class="btn-tirar" onclick="location.reload()">✨ Tirar 3 cartas ✨</button><div class="cartas" id="cartas"></div><div id="mensaje">✨ Las cartas aparecen solas ✨</div></div>
+<div><a class="tiktok" href="https://www.tiktok.com/@tarotnazaret" target="_blank">🎵 Sígueme @tarotnazaret</a><p class="pie">Hecho con amor por Tarot Nazaret 🌙</p></div>
 </div>
 <script>
-const mazo=[["El Loco","Lánzate, algo nuevo empieza.","🤪"],["El Mago","Tienes todo para empezar.","🎩"],["La Sacerdotisa","Escucha tu voz interior.","🔮"],["La Emperatriz","Cuídate y quiérete mucho.","👑"],["El Emperador","Orden y estabilidad.","🏰"],["El Hierofante","Aprende de quien te guía.","🙏"],["Los Enamorados","El corazón manda.","❤️"],["El Carro","Avanzas, no te pares.","🏎️"],["La Fuerza","Tú puedes con esto.","🦁"],["El Ermitaño","Un momento para ti.","🕯️"],["La Rueda","Viene un cambio bueno.","🎡"],["La Justicia","Todo se pone en su sitio.","⚖️"],["El Colgado","Mira todo de otra forma.","🙃"],["La Muerte","Se acaba algo y nace algo mejor.","🦋"],["La Templanza","Calma, todo llega.","🕊️"],["El Diablo","Suelta lo que te ata.","😈"],["La Torre","Un cambio brusco para bien.","⚡"],["La Estrella","Esperanza y calma.","⭐"],["La Luna","Confía en tu intuición.","🌙"],["El Sol","Viene algo muy bonito.","☀️"],["El Juicio","Es tu momento de renacer.","🎺"],["El Mundo","Se cierra un ciclo bonito.","🌍"]];
-function sonido(){try{let ctx=new (window.AudioContext||window.webkitAudioContext)();let o=ctx.createOscillator();let g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.frequency.setValueAtTime(880,ctx.currentTime);o.frequency.setValueAtTime(1320,ctx.currentTime+0.15);g.gain.setValueAtTime(0.12,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.5);o.start();o.stop(ctx.currentTime+0.5);}catch(e){}}
-function tirar(){sonido();let copiado=[...mazo].sort(()=>Math.random()-0.5).slice(0,3);let titulos=["PASADO","PRESENTE","FUTURO"];let html="";copiado.forEach((c,i)=>{html+=`<div class="col"><div class="carta" onclick="this.classList.toggle('girada');sonido()"><div class="interior"><div class="cara detras">🌙<br><span style="font-size:11px">TAROT<br>NAZARET</span></div><div class="cara delante"><div class="emoji">${c[2]}</div><h2>${c[0]}</h2><p>${c[1]}</p></div></div></div><div class="etiqueta">${titulos[i]}</div></div>`;});document.getElementById("cartas").innerHTML=html;
-let cartas=document.querySelectorAll(".carta");
-cartas.forEach((carta,i)=>{setTimeout(()=>{carta.classList.add("girada");sonido();},1000+i*1500);});
+var mazo=[["El Loco","Lánzate, algo nuevo empieza.","🤪"],["El Mago","Tienes todo para empezar.","🎩"],["La Sacerdotisa","Escucha tu voz interior.","🔮"],["La Emperatriz","Cuídate y quiérete mucho.","👑"],["El Emperador","Orden y estabilidad.","🏰"],["El Hierofante","Aprende de quien te guía.","🙏"],["Los Enamorados","El corazón manda.","❤️"],["El Carro","Avanzas, no te pares.","🏎️"],["La Fuerza","Tú puedes con esto.","🦁"],["El Ermitaño","Un momento para ti.","🕯️"],["La Rueda","Viene un cambio bueno.","🎡"],["La Justicia","Todo se pone en su sitio.","⚖️"],["El Colgado","Mira todo de otra forma.","🙃"],["La Muerte","Se acaba algo y nace algo mejor.","🦋"],["La Templanza","Calma, todo llega.","🕊️"],["El Diablo","Suelta lo que te ata.","😈"],["La Torre","Un cambio brusco para bien.","⚡"],["La Estrella","Esperanza y calma.","⭐"],["La Luna","Confía en tu intuición.","🌙"],["El Sol","Viene algo muy bonito.","☀️"],["El Juicio","Es tu momento de renacer.","🎺"],["El Mundo","Se cierra un ciclo bonito.","🌍"]];
+var titulos=["PASADO","PRESENTE","FUTURO"];
+var copiado=mazo.slice().sort(function(){return Math.random()-0.5}).slice(0,3);
+var html="";
+for(var i=0;i<3;i++){
+html+='<div class="col"><div class="carta detras" id="carta'+i+'">🌙<br><span style="font-size:11px">TAROT<br>NAZARET</span></div><div class="etiqueta">'+titulos[i]+'</div></div>';
 }
-tirar();
+document.getElementById("cartas").innerHTML=html;
+function mostrar(i){
+var el=document.getElementById("carta"+i);
+el.className="carta delante";
+el.innerHTML='<div class="emoji">'+copiado[i][2]+'</div><h2>'+copiado[i][0]+'</h2><p>'+copiado[i][1]+'</p>';
+}
+setTimeout(function(){mostrar(0)},1000);
+setTimeout(function(){mostrar(1)},2500);
+setTimeout(function(){mostrar(2)},4000);
 </script>
 </body>
 </html>
