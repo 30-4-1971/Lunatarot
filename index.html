@@ -2,40 +2,41 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>✨ Tarot Nazaret ✨</title>
 <style>
-body{margin:0;background:#0f0a24;color:white;font-family:Arial,sans-serif;text-align:center;padding:20px;background-image:radial-gradient(white 1px, transparent 1px);background-size:30px 30px}
-.logo{font-size:50px;margin:0}
-h1{color:#f5d76e;font-size:36px;margin:5px 0;text-shadow:0 0 20px #e6007e}
-.sub{color:#e6c8ff;font-size:17px;margin-bottom:15px}
-button{border:none;padding:16px 28px;font-size:19px;border-radius:30px;cursor:pointer;font-weight:bold}
-.btn-tirar{background:linear-gradient(#f5d76e,#e6007e);color:white;box-shadow:0 0 25px #e6007e}
-.cartas{display:flex;justify-content:center;gap:16px;margin-top:25px;flex-wrap:wrap}
-.carta{width:175px;height:285px;perspective:800px;cursor:pointer}
+*{box-sizing:border-box}
+body{margin:0;background:#0f0a24;color:white;font-family:Arial,sans-serif;text-align:center;padding:12px 8px}
+.logo{font-size:32px;margin:0}
+h1{color:#f5d76e;font-size:26px;margin:2px 0;text-shadow:0 0 15px #e6007e}
+.sub{color:#e6c8ff;font-size:14px;margin:0 0 10px}
+button{border:none;padding:12px 20px;font-size:16px;border-radius:30px;cursor:pointer;font-weight:bold}
+.btn-tirar{background:linear-gradient(#f5d76e,#e6007e);color:white}
+.cartas{display:flex;justify-content:center;gap:8px;margin-top:14px;flex-wrap:nowrap}
+.carta{width:32%;max-width:115px;height:175px;perspective:800px;cursor:pointer;flex-shrink:0}
 .interior{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform 0.8s}
 .carta.girada .interior{transform:rotateY(180deg)}
-.cara{position:absolute;width:100%;height:100%;border-radius:20px;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px;box-sizing:border-box}
-.detras{background:linear-gradient(135deg,#e6007e,#3b1d6e,#a06ee1);border:3px solid #f5d76e;font-size:55px}
-.delante{background:#fff7e6;color:#1a1030;transform:rotateY(180deg);border:3px solid #f5d76e}
-.delante .emoji{font-size:55px}
-.delante h2{font-size:18px;margin:8px 0 4px}
-.delante p{font-size:14px;margin:0}
-.etiqueta{margin-top:8px;background:#f5d76e;color:#1a1030;padding:5px 14px;border-radius:20px;font-weight:bold;font-size:13px}
-#mensaje{margin-top:20px;font-size:19px;color:#f5d76e;min-height:30px}
-.tiktok{margin-top:25px;display:inline-block;background:black;color:white;text-decoration:none;padding:14px 22px;border-radius:30px;font-weight:bold;font-size:17px;border:2px solid #e6007e}
+.cara{position:absolute;width:100%;height:100%;border-radius:14px;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px}
+.detras{background:linear-gradient(135deg,#e6007e,#3b1d6e,#a06ee1);border:2px solid #f5d76e;font-size:32px}
+.delante{background:#fff7e6;color:#1a1030;transform:rotateY(180deg);border:2px solid #f5d76e}
+.delante .emoji{font-size:32px}
+.delante h2{font-size:13px;margin:5px 0 3px;line-height:1.1}
+.delante p{font-size:11px;margin:0;line-height:1.2}
+.etiqueta{margin-top:6px;background:#f5d76e;color:#1a1030;padding:3px 8px;border-radius:20px;font-weight:bold;font-size:10px;display:inline-block}
+#mensaje{margin-top:12px;font-size:15px;color:#f5d76e}
+.tiktok{margin-top:14px;display:inline-block;background:black;color:white;text-decoration:none;padding:11px 18px;border-radius:30px;font-weight:bold;font-size:14px;border:2px solid #e6007e}
 </style>
 </head>
 <body>
 <p class="logo">🌙✨</p>
 <h1>Tarot Nazaret</h1>
-<p class="sub">Tu lectura de hoy, con mucho cariño 💜</p>
+<p class="sub">Tu lectura de hoy 💜</p>
 <button class="btn-tirar" onclick="tirar()">✨ Tirar otra vez ✨</button>
 <div class="cartas" id="cartas"></div>
-<div id="mensaje">✨ Toca cada carta para descubrirla ✨</div>
-<p style="font-size:13px;opacity:0.7">Toca cada carta para girarla 🔊</p>
-<a class="tiktok" href="https://www.tiktok.com/@tarotnazaret" target="_blank">🎵 Sígueme en TikTok @tarotnazaret</a>
-<p style="font-size:12px;opacity:0.6;margin-top:15px">Hecho con amor por Tarot Nazaret 🌙</p>
+<div id="mensaje">✨ Toca cada carta ✨</div>
+<p style="font-size:12px;opacity:0.7">Toca para girar 🔊</p>
+<a class="tiktok" href="https://www.tiktok.com/@tarotnazaret" target="_blank">🎵 Sígueme @tarotnazaret</a>
+<p style="font-size:11px;opacity:0.6">Hecho con amor por Tarot Nazaret 🌙</p>
 <script>
 const mazo=[
 ["El Loco","Lánzate, algo nuevo empieza.","🤪"],
@@ -61,29 +62,8 @@ const mazo=[
 ["El Juicio","Es tu momento de renacer.","🎺"],
 ["El Mundo","Se cierra un ciclo bonito.","🌍"]
 ];
-function sonido(){
-try{
-let ctx=new (window.AudioContext||window.webkitAudioContext)();
-let o=ctx.createOscillator(); let g=ctx.createGain();
-o.connect(g); g.connect(ctx.destination);
-o.frequency.setValueAtTime(880,ctx.currentTime);
-o.frequency.setValueAtTime(1320,ctx.currentTime+0.15);
-g.gain.setValueAtTime(0.2,ctx.currentTime);
-g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.6);
-o.start(); o.stop(ctx.currentTime+0.6);
-}catch(e){}
-}
-function tirar(){
-sonido();
-let copiado=[...mazo].sort(()=>Math.random()-0.5).slice(0,3);
-let titulos=["PASADO","PRESENTE","FUTURO"];
-let html="";
-copiado.forEach((c,i)=>{
-html+=`<div><div class="carta" onclick="this.classList.toggle('girada');sonido()"><div class="interior"><div class="cara detras">🌙<br><span style="font-size:14px">TAROT<br>NAZARET</span></div><div class="cara delante"><div class="emoji">${c[2]}</div><h2>${c[0]}</h2><p>${c[1]}</p></div></div></div><div class="etiqueta">${titulos[i]}</div></div>`;
-});
-document.getElementById("cartas").innerHTML=html;
-}
-window.onload=tirar;
+function sonido(){try{let ctx=new (window.AudioContext||window.webkitAudioContext)();let o=ctx.createOscillator();let g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.frequency.setValueAtTime(880,ctx.currentTime);o.frequency.setValueAtTime(1320,ctx.currentTime+0.15);g.gain.setValueAtTime(0.15,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.5);o.start();o.stop(ctx.currentTime+0.5);}catch(e){}}
+function tirar(){sonido();let copiado=[...mazo].sort(()=>Math.random()-0.5).slice(0,3);let titulos=["PASADO","PRESENTE","FUTURO"];let html="";copiado.forEach((c,i)=>{html+=`<div style="width:32%"><div class="carta" style="width:100%" onclick="this.classList.toggle('girada');sonido()"><div class="interior"><div class="cara detras">🌙<br><span style="font-size:10px">TAROT<br>NAZARET</span></div><div class="cara delante"><div class="emoji">${c[2]}</div><h2>${c[0]}</h2><p>${c[1]}</p></div></div></div><div class="etiqueta">${titulos[i]}</div></div>`;});document.getElementById("cartas").innerHTML=html;}
 tirar();
 </script>
 </body>
