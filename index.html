@@ -12,7 +12,9 @@ body{display:flex;justify-content:center;align-items:flex-start;background:#1a0f
 .logo{font-size:32px}
 h1{color:#f5d76e;font-size:30px}
 .sub{color:#e6c8ff;font-size:14px;margin-top:2px}
-.cartas{display:flex;justify-content:center;gap:10px;margin:10px 0}
+button{border:none;padding:12px 20px;font-size:16px;border-radius:30px;cursor:pointer;font-weight:bold}
+.btn-tirar{background:#e6007e;color:white;margin:10px 0}
+.cartas{display:flex;justify-content:center;gap:10px;margin:8px 0}
 .col{width:32%}
 .etiqueta{background:#f5d76e;color:#1a1030;padding:5px 6px;border-radius:20px;font-weight:bold;font-size:11px;display:block;margin-bottom:6px}
 .carta{width:100%;height:175px;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px}
@@ -29,7 +31,7 @@ h1{color:#f5d76e;font-size:30px}
 <body>
 <div class="contenedor">
 <div><p class="logo">🌙✨</p><h1>Tarot Nazaret</h1><p class="sub">Tu lectura de hoy, con mucho cariño 💜</p></div>
-<div><div class="cartas" id="cartas"></div><div id="mensaje">✨ Las cartas cambian solas ✨</div></div>
+<div><button class="btn-tirar" onclick="location.reload()">✨ Tirar 3 cartas ✨</button><div class="cartas" id="cartas"></div><div id="mensaje">✨ Las cartas aparecen solas ✨</div></div>
 <div><a class="tiktok" href="https://www.tiktok.com/@tarotnazaret" target="_blank">🎵 Sígueme @tarotnazaret</a><p class="pie">Hecho con amor por Tarot Nazaret 🌙</p></div>
 </div>
 <script>
@@ -49,8 +51,6 @@ el.innerHTML='<div class="emoji">'+copiado[i][2]+'</div><h2>'+copiado[i][0]+'</h
 setTimeout(function(){mostrar(0)},1000);
 setTimeout(function(){mostrar(1)},2500);
 setTimeout(function(){mostrar(2)},4000);
-// Cambia sola cada 20 segundos
-setTimeout(function(){location.reload()},20000);
 </script>
 </body>
 </html>
